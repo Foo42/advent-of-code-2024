@@ -1,8 +1,8 @@
-def parse(lines: list[str]) -> list[tuple[int, int]]:
+def parse(lines: list[str]) -> tuple[list[int], list[int]]:
     pairs = [line.split() for line in lines]
     assert all([len(pair) == 2 for pair in pairs])
     numbers = [(int(pair[0]), int(pair[1])) for pair in pairs] 
-    return numbers
+    return to_pair_of_lists(numbers)
 
 
 def to_pair_of_lists(list_of_pairs: list[tuple[int, int]]) -> tuple[list[int], list[int]]:

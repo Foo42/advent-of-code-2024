@@ -5,8 +5,8 @@ def exercise_1():
     lines = []
     with open('../input/lists.txt') as example_file:
         lines = example_file.readlines()
-    pairs = parse(lines)
-    total_distance = calculate_total_distance_of_closest(pairs)
+    pair_of_lists = parse(lines)
+    total_distance = calculate_total_distance_of_closest(pair_of_lists)
     print(f'total distance: {total_distance}')
 
 
