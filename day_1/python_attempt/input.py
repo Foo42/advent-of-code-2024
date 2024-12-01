@@ -1,3 +1,9 @@
+def load_from_file(path: str) -> tuple[list[int], list[int]]:
+    lines = []
+    with open(path) as example_file:
+        lines = example_file.readlines()
+    return parse(lines)
+
 def parse(lines: list[str]) -> tuple[list[int], list[int]]:
     pairs = [line.split() for line in lines]
     assert all([len(pair) == 2 for pair in pairs])

@@ -1,5 +1,6 @@
-from input import parse
+from input import load_from_file, parse
 from distance import calculate_total_distance_of_closest, match_closest
+from similarity import count_occurrences, calculate_similarity
 
 def test_parse_line():
     input_lines = ['1   4', '5   7']
@@ -12,9 +13,15 @@ def test_pair_closest():
     assert match_closest(inputs) == expected
 
 def test_example_lists():
-    lines = []
-    with open('../input/example.txt') as example_file:
-        lines = example_file.readlines()
-    pair_of_lists = parse(lines)
+    pair_of_lists = load_from_file('../input/example.txt')
     total_distance = calculate_total_distance_of_closest(pair_of_lists)
     assert total_distance == 11
+
+def test_count_occurances():
+    target = 3
+    others = [2,4,3,3,6,3,1,3]
+    assert count_occurrences(target, others) == 4
+
+def test_part_2_example():
+    pair_of_lists = load_from_file('../input/example.txt')
+    assert calculate_similarity(pair_of_lists) == 31
