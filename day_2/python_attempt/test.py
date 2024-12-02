@@ -21,3 +21,13 @@ def test_example_data():
         row_number for row_number, report in enumerate(reports, 1) if is_safe(report)
     ]
     assert safe_reports == [1, 6]
+
+
+def test_exercise_2_example_data():
+    reports = load_reports_from_file("../input/example.txt")
+    safe_reports = [
+        row_number
+        for row_number, report in enumerate(reports, 1)
+        if is_safe(report, problem_damping=True)
+    ]
+    assert safe_reports == [1, 4, 5, 6]
