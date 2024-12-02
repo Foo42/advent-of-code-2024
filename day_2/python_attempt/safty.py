@@ -6,12 +6,5 @@ def is_safe(report: list[int]) -> bool:
     deltas = [a - b for a, b in pairs]
     assert len(deltas) > 0
     is_ascending = deltas[0] > 0
-    if is_ascending:
-        if not all(delta > 0 for delta in deltas):
-            return False
-    else:
-        if not all(delta < 0 for delta in deltas):
-            return False
-
-    absolute_deltas = [abs(delta) for delta in deltas]
-    return all(d >= 1 and d <= 3 for d in absolute_deltas)
+    acceptable_range = range(1, 4) if is_ascending else range(-3, 0)
+    return all(d in acceptable_range for d in deltas)
