@@ -66,10 +66,14 @@ class Grid:
             return self.data[coordinates.y][coordinates.x]
         return None
 
-    def values_along(self, start: Vec2, direction: Direction) -> Iterator[str]:
+    def values_along(
+        self, start: Vec2, direction: Direction, max_length: Optional[int] = None
+    ) -> Iterator[str]:
         path = coordinates_in_direction(start, direction)
         values = (self.value_at(coord) for coord in path)
-        for value in values:
+        for count, value in enumerate(values):
+            if max_length is not None and count >= max_length:
+                break
             if value is None:
                 break
             yield value

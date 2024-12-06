@@ -1,6 +1,6 @@
 from itertools import islice
 from grid import coordinates_in_direction, load_grid_from_file, Vec2
-from main import count_word_in_grid
+from main import count_word_in_grid, find_xmas_crosses
 
 
 def test_load_example_into_grid():
@@ -15,3 +15,9 @@ def test_example():
     grid = load_grid_from_file("../input/example.txt")
     matches = count_word_in_grid("XMAS", grid)
     assert matches == 18
+
+
+def test_example_part_2():
+    grid = load_grid_from_file("../input/example.txt")
+    matches = find_xmas_crosses(grid)
+    assert matches == 9
