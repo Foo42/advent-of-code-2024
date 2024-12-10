@@ -11,6 +11,12 @@ pub struct BlockChunk {
     pub length: usize,
 }
 
+impl BlockChunk {
+    pub fn blocks(&self) -> Vec<Option<FileId>> {
+        (0..self.length).map(|_| self.file_id).collect()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

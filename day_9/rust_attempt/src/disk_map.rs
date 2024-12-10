@@ -30,10 +30,7 @@ mod tests {
 }
 
 pub fn block_chunks_to_blocks(chunks: &[BlockChunk]) -> DiskMap {
-    chunks
-        .iter()
-        .flat_map(|chunk| (0..chunk.length).map(|_| chunk.file_id).collect::<Vec<_>>())
-        .collect()
+    chunks.iter().flat_map(|chunk| chunk.blocks()).collect()
 }
 
 pub fn compact_once(blocks: &mut DiskMap) -> bool {
