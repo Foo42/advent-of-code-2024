@@ -1,5 +1,5 @@
 use std::io;
-use std::{fs, path::Path, usize};
+use std::{fs, usize};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct FileId(pub usize);

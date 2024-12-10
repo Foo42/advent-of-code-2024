@@ -2,9 +2,10 @@ mod checksum;
 mod disk_map;
 mod input;
 
+use disk_map::DiskBlockMap;
+
 use crate::{
-    checksum::calculate_checksum,
-    disk_map::{block_chunks_to_blocks, compact_once},
+    checksum::calculate_checksum, disk_map::block_chunks_to_blocks,
     input::load_chunk_list_from_file,
 };
 
@@ -22,9 +23,10 @@ mod test {
 
 fn exercise_1(input_path: &str) -> usize {
     let chunks = load_chunk_list_from_file(input_path).unwrap();
-    let mut blocks = block_chunks_to_blocks(&chunks);
-    while compact_once(&mut blocks) {}
-    calculate_checksum(&blocks)
+    let blocks = block_chunks_to_blocks(&chunks);
+    let mut disk_map = DiskBlockMap::new(blocks);
+    while disk_map.compact_once() {}
+    calculate_checksum(disk_map.blocks())
 }
 
 fn main() {
